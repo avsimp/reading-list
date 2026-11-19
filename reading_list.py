@@ -30,13 +30,14 @@ def add_book(db, args):
     return 0
 
 
-def list_books(db, _args):
-    books = db.execute(
-        "SELECT id, title, author, is_read FROM books ORDER BY id"
-    ).fetchall()
+def list_books(db, args):
+    query = "SELECT id, title, author, is_read FROM books"
+    if args.unread:
+        query += " WHERE is_read = 0"
+    books = db.execute(query + " ORDER BY id").fetchall()
 
     if not books:
-        print("Список чтения пуст.")
+        print("Нет непрочитанных книг." if args.unread else "Список чтения пуст.")
         return 0
 
     for book_id, title, author, is_read in books:
@@ -81,6 +82,9 @@ def build_parser():
     add.set_defaults(handler=add_book)
 
     listing = commands.add_parser("list", help="показать все книги")
+    listing.add_argument(
+        "--unread", action="store_true", help="показать только непрочитанные книги"
+    )
     listing.set_defaults(handler=list_books)
 
     mark = commands.add_parser("read", help="отметить книгу как прочитанную")

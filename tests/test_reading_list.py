@@ -28,6 +28,24 @@ class ReadingListTests(unittest.TestCase):
         self.assertEqual((code, stderr), (0, ""))
         self.assertEqual(stdout, "1. Солярис — Лем [к прочтению]\n")
 
+    def test_list_unread_shows_only_unread_books(self):
+        self.run_cli("add", "Солярис")
+        self.run_cli("add", "Пикник на обочине")
+        self.run_cli("read", "1")
+
+        self.assertEqual(
+            self.run_cli("list", "--unread"),
+            (0, "2. Пикник на обочине [к прочтению]\n", ""),
+        )
+
+    def test_list_unread_reports_when_all_books_are_read(self):
+        self.run_cli("add", "Солярис")
+        self.run_cli("read", "1")
+
+        self.assertEqual(
+            self.run_cli("list", "--unread"), (0, "Нет непрочитанных книг.\n", "")
+        )
+
     def test_read_updates_only_the_selected_book(self):
         self.run_cli("add", "Солярис")
         self.run_cli("add", "Пикник на обочине")
