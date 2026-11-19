@@ -1,0 +1,25 @@
+> reading-list-web@1.0.0 test
+> vitest run && playwright test
+
+
+ RUN  v5.1.1 .
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  02:13:23
+   Duration  715ms (tests 43%, import 31%, environment 25%, transform 1%)
+
+[WebServer] (node:9161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:9167) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+  ✓  1 e2e/library.spec.ts:12:1 › клавиатура → SQLite → обновление страницы → CLI (1.1s)
+  ✓  2 e2e/library.spec.ts:51:1 › мобильная форма сохраняет введённые данные при задержке и ошибке API (444ms)
+  ✓  3 e2e/library.spec.ts:73:1 › прототип показывает состояния и результат своего ввода (902ms)
+
+  3 passed (3.2s)

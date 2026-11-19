@@ -1,0 +1,20 @@
+* { box-sizing: border-box }
+.page { max-width: 1152px; padding: 0 clamp(18px,5vw,64px) 64px; margin: auto; --rule: #bac1b3; --ink: #284939 }
+header { display:flex; align-items:center; gap:14px; padding:24px 0; border-bottom:1px solid var(--rule); font:24px Georgia,serif }
+.spines { display:inline-flex; height:30px; align-items:flex-end; gap:3px; color:var(--ink) }
+.spines i { display:block; height:80%; width:5px; background:currentColor; border-top:3px double #e6e1ce; border-bottom:4px double #e6e1ce }
+.spines i:nth-child(2) { height:100%; width:7px }.spines i:nth-child(3){height:66%;color:#987650}.spines i:nth-child(4){height:89%}.spines i:last-child{transform:rotate(-12deg);margin-left:2px}
+main h1.MuiTypography-root { font-size:clamp(48px,7vw,86px); line-height:1.06; letter-spacing:-.052em; margin:clamp(32px,5vw,70px) 0 40px }
+.layout { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:clamp(24px,4vw,52px); align-items:start }
+.collection, .entry.MuiCard-root { border-top:3px solid var(--ink) }
+.section-heading { display:flex; align-items:center; gap:12px; padding:22px 0; border-bottom:1px solid var(--rule) }
+.layout h2 { font-size:clamp(24px,2.5vw,32px); line-height:1.2; letter-spacing:-.035em }
+.count, li small { border:1px solid var(--rule); border-radius:20px; padding:2px 10px; font:13px/1.6 Arial,sans-serif }
+.entry.MuiCard-root { padding:24px; border-radius:0 0 7px 7px; background:#e9ecdf }
+.entry .MuiTextField-root { background:#f9faf4 }
+.empty { display:grid; justify-items:center; gap:8px; padding:46px 10px; border-bottom:1px solid var(--rule); color:#536155 }
+.empty .spines { height:50px; margin-bottom:8px }.empty strong {font:24px Georgia,serif;color:var(--ink)}
+ul {list-style:none;margin:0;padding:0}li {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 0;border-bottom:1px solid var(--rule)}
+li div {display:grid;gap:5px;min-width:0;overflow-wrap:anywhere}li strong{font:24px Georgia,serif}li span{color:#536155}li small{flex:none}
+:focus-visible, .MuiButton-root.Mui-focusVisible {outline:3px solid #916526;outline-offset:3px}
+@media(max-width:720px){.layout{display:flex;flex-direction:column;align-items:stretch}.entry{order:-1}header{padding:16px 0}main h1.MuiTypography-root{margin:28px 0}.entry.MuiCard-root{padding:20px}}

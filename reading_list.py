@@ -20,21 +20,30 @@ def create_schema(db):
     )
 
 
-def add_book(db, args):
+def insert_book(db, title, author):
     with db:
         cursor = db.execute(
             "INSERT INTO books (title, author) VALUES (?, ?)",
-            (args.title, args.author.strip()),
+            (title, author.strip()),
         )
-    print(f"Добавлена книга #{cursor.lastrowid}: {args.title}")
+    return cursor.lastrowid
+
+
+def add_book(db, args):
+    book_id = insert_book(db, args.title, args.author)
+    print(f"Добавлена книга #{book_id}: {args.title}")
     return 0
 
 
-def list_books(db, args):
+def select_books(db, unread=False):
     query = "SELECT id, title, author, is_read FROM books"
-    if args.unread:
+    if unread:
         query += " WHERE is_read = 0"
-    books = db.execute(query + " ORDER BY id").fetchall()
+    return db.execute(query + " ORDER BY id").fetchall()
+
+
+def list_books(db, args):
+    books = select_books(db, args.unread)
 
     if not books:
         print("Нет непрочитанных книг." if args.unread else "Список чтения пуст.")
